@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
+const passport = require("passport");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
 
@@ -10,6 +11,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(ejsLayouts);
+
+app.use(passport.initialize());
+
+app.use(passport.session());
 
 app.set("view engine", "ejs");
 
