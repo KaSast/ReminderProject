@@ -24,6 +24,7 @@ const database = {
 
 const userModel = {
     findByEmail: (email) => {
+        console.log("userModel findByEmail called");
         const user = database.find((user) => user.email === email);
         if(user) {
             return user;
@@ -32,6 +33,7 @@ const userModel = {
     },
     
     findById: (id) => {
+        console.log("userModel findById called");
         const user = database.find((id) => user.id === id);
         if(user) {
             return user;

@@ -1,5 +1,3 @@
-let database = require("../database");
-
 function arrayRemove(arr, value) {
   return arr.filter(function(ele) {
     return ele != value;
@@ -7,10 +5,8 @@ function arrayRemove(arr, value) {
 }
 
 let remindersController = {
-  reminders: req.user.reminders,
-
   list: (req, res) => {
-    res.render("reminder/index", this.reminders);
+    res.render("reminder/index", req.user.reminders);
   },
 
   new: (req, res) => {
@@ -25,20 +21,19 @@ let remindersController = {
     if (searchResult != undefined) {
       res.render("reminder/single-reminder", { reminderItem: searchResult });
     } else {
-      res.render("reminder/index", this.reminders );
+      res.render("reminder/index", req.user.reminders );
     }
   },
 
   create: (req, res) => {
     let reminder = {
-      id: this.reminders.length + 1,
+      id: req.user.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
     };
     
-    this.reminders.push(reminder);
-    console.log( this.reminders );
+    req.user.reminders.push(reminder);
     res.redirect("/reminders");
   },
 
@@ -56,8 +51,6 @@ let remindersController = {
 
     let isComepleted = req.body.completed === 'true' ? true : false;
     
-    //I originally tried to iterate through the original array but couldnt get it to work... 
-    //so this is what I went with because it works (kind of)
     const objIndex = reminders.findIndex((obj => obj.id == reminderToUpdate));
     reminders[objIndex].title = req.body.title;
     reminders[objIndex].description = req.body.description;
@@ -69,10 +62,10 @@ let remindersController = {
   delete: (req, res) => {
     // implement this code
     const reminderToDelete = req.params.id;
-    const updatedReminders = this.reminders.filter((reminder) => {
+    const updatedReminders = req.user.reminders.filter((reminder) => {
       return reminder.id != reminderToDelete;
     });;
-    this.reminders = updatedReminders;
+    req.user.reminders = updatedReminders;
     res.redirect("/reminders");
   },
 };
