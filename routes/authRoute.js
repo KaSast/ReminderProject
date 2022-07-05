@@ -7,7 +7,11 @@ const router = express.Router();
 
 router.get("/login", forwardAuthenticated, authController.login);
 
-router.post("/login", authController.loginSubmit);
+router.post('/login', authController.loginSubmit
+  /*   passport.authenticate('local', { failureRedirect: '/auth/login' }),
+    function (req, res) {
+        res.redirect('/reminders');
+    } */);
 
 router.get("/register", authController.register);
 router.post("/register", authController.registerSubmit);

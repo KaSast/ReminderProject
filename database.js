@@ -1,6 +1,7 @@
-const database = {
-    cindy: {
+const database = [
+    {
         id: 1,
+        name: "Cindy",
         email: "cindy@gmail.com",
         password: "cindy1",
         reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}, 
@@ -8,19 +9,21 @@ const database = {
         {id:3, title: "test2", description: "test2", completed: false},
         {id:4, title: "test3", description: "test3", completed: false}]
     },
-    alex: {
+    {
         id: 2,
+        name: "Alex",
         email: "alex@gmail.com",
         password: "alex1",
         reminders: []
     }, 
-    kashton: {
+    {
         id: 3,
+        name: "Kashton",
         email: "kashton@gmail.com",
         password: "kashton1",
         reminders: [{id: 1, title: "Add Login", description: "add login functionality to app"}]
     }
-}
+]
 
 const userModel = {
     findByEmail: (email) => {
@@ -34,7 +37,7 @@ const userModel = {
     
     findById: (id) => {
         console.log("userModel findById called");
-        const user = database.find((id) => user.id === id);
+        const user = database.find((user) => user.id === id);
         if(user) {
             return user;
         }

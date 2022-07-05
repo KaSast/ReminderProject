@@ -6,7 +6,7 @@ function arrayRemove(arr, value) {
 
 let remindersController = {
   list: (req, res) => {
-    res.render("reminder/index", req.user.reminders);
+    res.render("reminder/index", {reminders: req.user.reminders});
   },
 
   new: (req, res) => {
@@ -15,13 +15,13 @@ let remindersController = {
 
   listOne: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = this.eminders.find(function (reminder) {
+    let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     if (searchResult != undefined) {
       res.render("reminder/single-reminder", { reminderItem: searchResult });
     } else {
-      res.render("reminder/index", req.user.reminders );
+      res.render("reminder/index", {reminders: req.user.reminders} );
     }
   },
 
@@ -39,7 +39,7 @@ let remindersController = {
 
   edit: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = reminders.find(function (reminder) {
+    let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     res.render("reminder/edit", { reminderItem: searchResult });
@@ -51,10 +51,10 @@ let remindersController = {
 
     let isComepleted = req.body.completed === 'true' ? true : false;
     
-    const objIndex = reminders.findIndex((obj => obj.id == reminderToUpdate));
-    reminders[objIndex].title = req.body.title;
-    reminders[objIndex].description = req.body.description;
-    reminders[objIndex].completed = isComepleted;
+    const objIndex = req.user.reminders.findIndex((obj => obj.id == reminderToUpdate));
+    req.user.reminders[objIndex].title = req.body.title;
+    req.user.reminders[objIndex].description = req.body.description;
+    req.user.reminders[objIndex].completed = isComepleted;
 
     res.redirect("/reminders");
   },
