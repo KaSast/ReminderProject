@@ -1,8 +1,3 @@
-function arrayRemove(arr, value) {
-  return arr.filter(function(ele) {
-    return ele != value;
-  })
-}
 
 let remindersController = {
   list: (req, res) => {

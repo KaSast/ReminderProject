@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/login"));
 
-/* router.post('/login',
+router.post('/login',
     passportLocal.authenticate('local', { failureRedirect: 'auth/login' }),
     function (req, res) {
         res.redirect('/reminders');
-    }); */
+    });
 
 router.get('/logout', function (req, res, next) {
     req.logout(function (err) {
@@ -20,8 +20,8 @@ router.get('/logout', function (req, res, next) {
     });
 });
 
-router.get('auth/github',
-    passportGit.authenticate('github', { scope: ['user:email'] }));
+router.get('/github',
+    passportGit.authenticate('github'));
 
 router.get('/github/callback',
     passportGit.authenticate('github', { failureRedirect: 'auth/login' }),
