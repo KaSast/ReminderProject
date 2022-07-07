@@ -4,6 +4,9 @@ const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 
+require('dotenv').config();
+console.log(process.env)
+
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
@@ -19,7 +22,7 @@ app.use(
   })
 );
 
-const passport = require("passport");
+const passport = require("./middleware/passportLocal");
 const reminderRoute = require("./routes/reminderRoute");
 const authRoute = require("./routes/authRoute");
 
