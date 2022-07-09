@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("../middleware/passport");
 const sessionController = require("../controller/sessionController")
-const { forwardAuthenticated, ensureAuthenticated } = require("../middleware/checkAuth");
+const { forwardAuthenticated, ensureAuthenticated, checkIsAdmin } = require("../middleware/checkAuth");
 
 const router = express.Router();
 
@@ -35,6 +35,6 @@ router.get('/github/callback',
 router.get("/register", (req, res) => res.render("auth/register"));
 //router.post("/register", authController.registerSubmit);
 
-router.get("/admin", ensureAuthenticated, sessionController.sessions);
+router.get("/admin", ensureAuthenticated, checkIsAdmin, sessionController.sessions);
 
 module.exports = router;

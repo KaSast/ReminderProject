@@ -10,8 +10,7 @@ module.exports = {
     },
 
     sessions: (req, res) => {
-        console.log(`sessionController.sessions called \n user role: ${req.user.role}`);
-        console.log(`checkIsAdmin function \n result: ${req.user.role == "admin"}`);
+
         if(checkIsAdmin) {
             console.log('true')
             res.render("auth/admin", {sessions: database.sessions})

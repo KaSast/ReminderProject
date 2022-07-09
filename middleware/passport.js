@@ -30,10 +30,6 @@ const githubLogin = new GitHubStrategy({
     let user = userController.getUserByGitHubIdOrCreate(profile);
     console.log(`created user: ${user.name}`);
     return cb(null, user);
-
-    /* User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      return done(err, user);
-    }); */
   }
 );
 
