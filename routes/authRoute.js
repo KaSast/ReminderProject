@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("../middleware/passport");
-const sessionController = require("../controller/sessionController")
+const sessionController = require("../controller/adminController")
 const { forwardAuthenticated, ensureAuthenticated, checkIsAdmin } = require("../middleware/checkAuth");
 
 const router = express.Router();
@@ -11,7 +11,6 @@ router.post('/login',
     passport.authenticate('local', { failureRedirect: 'auth/login' }),
     function (req, res) {
         console.log(req.session);
-        sessionController.addSession(req.session);
         res.redirect('/reminders');
     });
 
@@ -32,7 +31,7 @@ router.get('/github/callback',
         res.redirect('/reminders');
     });
 
-router.get("/register", (req, res) => res.render("auth/register"));
+//router.get("/register", (req, res) => res.render("auth/register"));
 //router.post("/register", authController.registerSubmit);
 
 router.get("/admin", ensureAuthenticated, checkIsAdmin, sessionController.sessions);

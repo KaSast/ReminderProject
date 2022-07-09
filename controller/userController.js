@@ -22,13 +22,21 @@ const getUserByGitHubIdOrCreate = (profile) => {
     let user = getUserById(profile.id);
 
     if(!user) {
+      console.log(profile);
+/*       user.id = parseInt(profile.id);
+      user.name = profile.login;
+      user.reminders = []
+      user.role = 'user'; */
       user = {
         id: parseInt(profile.id),
-        name: profile.displayName,
-        reminder: [],
-        role: user,
+        name: profile.login,
+        reminders: [],
+        role: 'admin',
       }
     }
+
+    console.log(user);
+    userModel.addUser(user)
 
     return user;
 };

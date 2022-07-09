@@ -19,7 +19,7 @@ const database = [
         role: "user",
     }, 
     {
-        id: 95460157,
+        id: 3,
         name: "Kashton",
         email: "kashton@gmail.com",
         password: "kashton1",
@@ -28,7 +28,6 @@ const database = [
     }
 ]
 
-const sessions = []
 
 const userModel = {
     findByEmail: (email) => {
@@ -48,17 +47,15 @@ const userModel = {
         }
         return null;
     },
-}
 
-const sessionAccess = {
-    addToSessions: (session) => {
-        sessions.push(session);
-    },
+    addUser: (user) => {
+        if(user) {
+            database.push(user);
+        }
+    }
 }
 
 module.exports = {
     database,
-    sessions,
     userModel,
-    sessionAccess
 }
