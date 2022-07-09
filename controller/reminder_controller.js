@@ -1,7 +1,7 @@
 
 let remindersController = {
   list: (req, res) => {
-    res.render("reminder/index", {reminders: req.user.reminders});
+    res.render("reminder/index", {reminders: req.user.reminders, role: req.user.role});
   },
 
   new: (req, res) => {

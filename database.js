@@ -7,23 +7,28 @@ const database = [
         reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}, 
         {id:2, title: "test1", description: "test1", completed: false},
         {id:3, title: "test2", description: "test2", completed: false},
-        {id:4, title: "test3", description: "test3", completed: false}]
+        {id:4, title: "test3", description: "test3", completed: false}],
+        role: "user",
     },
     {
         id: 2,
         name: "Alex",
         email: "alex@gmail.com",
         password: "alex1",
-        reminders: []
+        reminders: [],
+        role: "user",
     }, 
     {
         id: 3,
         name: "Kashton",
         email: "kashton@gmail.com",
         password: "kashton1",
-        reminders: [{id: 1, title: "Add Login", description: "add login functionality to app"}]
+        reminders: [{id: 1, title: "Add Login", description: "add login functionality to app"}],
+        role: "admin",
     }
 ]
+
+const sessions = []
 
 const userModel = {
     findByEmail: (email) => {
@@ -45,7 +50,15 @@ const userModel = {
     },
 }
 
+const sessionAccess = {
+    addToSessions: (session) => {
+        sessions.push(session);
+    },
+}
+
 module.exports = {
     database,
+    sessions,
     userModel,
+    sessionAccess
 }
