@@ -10,7 +10,7 @@ router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/login"
 router.post('/login',
     passport.authenticate('local', { failureRedirect: 'auth/login' }),
     function (req, res) {
-        console.log(req.session);
+        //console.log(req.session);
         res.redirect('/reminders');
     });
 

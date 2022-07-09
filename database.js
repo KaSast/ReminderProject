@@ -23,7 +23,7 @@ const database = [
         name: "Kashton",
         email: "kashton@gmail.com",
         password: "kashton1",
-        reminders: [{id: 1, title: "Add Login", description: "add login functionality to app"}],
+        reminders: [{id: 1, title: "Add Login", description: "add login functionality to app", completed: false}],
         role: "admin",
     }
 ]
@@ -31,7 +31,7 @@ const database = [
 
 const userModel = {
     findByEmail: (email) => {
-        console.log("userModel findByEmail called");
+        //console.log("userModel findByEmail called");
         const user = database.find((user) => user.email === email);
         if(user) {
             return user;
@@ -40,7 +40,7 @@ const userModel = {
     },
     
     findById: (id) => {
-        console.log("userModel findById called");
+        //console.log("userModel findById called");
         const user = database.find((user) => user.id === id);
         if(user) {
             return user;

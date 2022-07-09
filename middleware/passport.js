@@ -4,7 +4,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const userController = require("../controller/userController");
 
 const localLogin = new LocalStrategy(
-    //Explicitely stated even though it is defualt behavior
     {
         usernameField: "email",
         passwordField: "password",
@@ -28,18 +27,18 @@ const githubLogin = new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     let user = userController.getUserByGitHubIdOrCreate(profile);
-    console.log(`created user: ${user.name}`);
+    //console.log(`created user: ${user.name}`);
     return cb(null, user);
   }
 );
 
 passport.serializeUser(function (user, done) {
-    console.log("passport serializeUser called");
+    //console.log("passport serializeUser called");
     done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
-    console.log("passport serializeUser called");
+    //console.log("passport serializeUser called");
     let user = userController.getUserById(id);
     if (user) {
         done(null, user);
