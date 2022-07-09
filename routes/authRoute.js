@@ -1,6 +1,5 @@
 const express = require("express");
-const passportLocal = require("../middleware/passportLocal");
-const passportGit = require("../middleware/passportGit");
+const passport = require("../middleware/passport");
 const sessionController = require("../controller/sessionController")
 const { forwardAuthenticated, ensureAuthenticated } = require("../middleware/checkAuth");
 
@@ -9,7 +8,7 @@ const router = express.Router();
 router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/login"));
 
 router.post('/login',
-    passportLocal.authenticate('local', { failureRedirect: 'auth/login' }),
+    passport.authenticate('local', { failureRedirect: 'auth/login' }),
     function (req, res) {
         console.log(req.session);
         sessionController.addSession(req.session);
@@ -24,10 +23,10 @@ router.get('/logout', function (req, res, next) {
 });
 
 router.get('/github',
-    passportGit.authenticate('github'));
+    passport.authenticate('github'));
 
 router.get('/github/callback',
-    passportGit.authenticate('github', { failureRedirect: 'auth/login' }),
+    passport.authenticate('github', { failureRedirect: 'auth/login' }),
     function (req, res) {
         // Successful authentication, redirect home.
         res.redirect('/reminders');

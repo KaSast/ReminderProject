@@ -9,6 +9,7 @@ const getUserByEmailIdAndPassword = (email, password) => {
   }
   return null;
 };
+
 const getUserById = (id) => {
   let user = userModel.findById(id);
   if (user) {
@@ -17,11 +18,27 @@ const getUserById = (id) => {
   return null;
 };
 
+const getUserByGitHubIdOrCreate = (profile) => {
+    let user = getUserById(profile.id);
+
+    if(!user) {
+      user = {
+        id: parseInt(profile.id),
+        name: profile.displayName,
+        reminder: [],
+        role: user,
+      }
+    }
+
+    return user;
+};
+
 function isUserValid(user, password) {
   return user.password === password;
-}
+};
 
 module.exports = {
   getUserByEmailIdAndPassword,
   getUserById,
+  getUserByGitHubIdOrCreate,
 };

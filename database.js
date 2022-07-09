@@ -19,7 +19,7 @@ const database = [
         role: "user",
     }, 
     {
-        id: 3,
+        id: 95460157,
         name: "Kashton",
         email: "kashton@gmail.com",
         password: "kashton1",
@@ -46,7 +46,7 @@ const userModel = {
         if(user) {
             return user;
         }
-        throw new Error(`Couldn't find user with email: ${id}`);
+        return null;
     },
 }
 

@@ -20,7 +20,7 @@ app.use(
   })
 );
 
-const passport = require("./middleware/passportLocal");
+const passport = require("./middleware/passport");
 const reminderRoute = require("./routes/reminderRoute");
 const authRoute = require("./routes/authRoute");
 
