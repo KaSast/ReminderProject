@@ -1,4 +1,4 @@
-const checkIsAdmin = require("../middleware/checkAuth").checkIsAdmin;
+
 
 module.exports = {
     sessions: (req, res) => {

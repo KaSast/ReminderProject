@@ -22,7 +22,7 @@ const getUserByGitHubIdOrCreate = (profile) => {
     let user = getUserById(profile.id);
 
     if(!user) {
-      console.log(profile);
+      //console.log(profile);
       user = {
         id: parseInt(profile.id),
         name: profile.name,
