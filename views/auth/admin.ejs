@@ -4,10 +4,10 @@
     <h2>Current Active Sessions:</h2>
 
 
-        <% for(const session of sessionList) {%>
+        <% for(const session in sessionList) {%>
             <div>
                 <p>Session ID: <%= session.sessionID %></p>
-                <p>UserID: <%= session.userId %></p>
+                <p>UserID: <%= session.passport %></p>
                 <a href="/auth/admin/revoke/?id=<%=session.sessionID%>">Revoke Session</a>
             </div>
         <% } %>

@@ -40,11 +40,11 @@ app.use("/", reminderRoute);
 app.use("/auth", authRoute);
 
 const { ensureAuthenticated, checkIsAdmin } = require("./middleware/checkAuth");
-const expressEjsLayouts = require("express-ejs-layouts");
 
 app.get("/auth/admin", ensureAuthenticated, checkIsAdmin, (req, res) => {
   sessionStore.all((err, sessions) => {
     console.log(sessions);
+    
     let sessionToPass = sessions;
     if (err) {
       console.log(err); //incorrect error handling..
