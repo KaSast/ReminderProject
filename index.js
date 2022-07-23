@@ -40,10 +40,9 @@ app.use("/", reminderRoute);
 app.use("/auth", authRoute);
 
 const { ensureAuthenticated, checkIsAdmin } = require("./middleware/checkAuth");
-const expressEjsLayouts = require("express-ejs-layouts");
 
 app.get("/auth/admin", ensureAuthenticated, checkIsAdmin, (req, res) => {
-  sessionStore.all((err, sessions) => {
+  sessionStore.all((err, sessions) => { //Docs say it returns an array but it returns an object..
     console.log(sessions);
     let sessionToPass = sessions;
     if (err) {
@@ -53,7 +52,7 @@ app.get("/auth/admin", ensureAuthenticated, checkIsAdmin, (req, res) => {
   })
 });
 
-app.get("/auth/admin/revoke", ensureAuthenticated, checkIsAdmin, (req, res) => {
+app.get("/auth/admin/revoke/:id", ensureAuthenticated, checkIsAdmin, (req, res) => {
   let sessionId = req.params.id;
 
   sessionStore.destroy(sessionId, (req, res) => {
